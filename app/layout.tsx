@@ -1,0 +1,102 @@
+import type { Metadata } from "next";
+import {
+  getStructuredData,
+  siteDescription,
+  siteTitle,
+  siteUrl,
+  targetKeywords,
+} from "@/lib/seo";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://123-cheolgeo.vercel.app"),
+  title: {
+    default: siteTitle,
+    template: "%s | 일산강아지파양",
+  },
+  description: "123철거는 모든 종류의 철거를 전문으로 합니다. 주택, 상가, 인테리어, 부분 철거까지, 안전하고 효율적인 작업으로 고객 만족을 최우선으로 합니다.",
+  keywords: [...targetKeywords, "일산 강아지 파양", "일산 유기견", "아가펫"],
+  authors: [{ name: "아가펫" }],
+  creator: "아가펫",
+  publisher: "아가펫",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    url: siteUrl,
+    siteName: "일산강아지파양 · 일산유기견보호소 안내",
+    title: "123철거 | 안전하고 완벽한 철거 전문, 지금 바로 상담하세요",
+    description: siteDescription,
+    images: [
+      {
+        url: "/images/shelter-01.png",
+        width: 1200,
+        height: 630,
+        alt: "일산강아지파양·일산유기견보호소 보호소 전경",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/images/shelter-01.png"],
+  },
+  alternates: {
+    canonical: "https://123-cheolgeo.vercel.app",
+  },
+  category: "반려동물",
+  verification: {
+    other: {
+      "naver-site-verification": "5157c07b2ad7cc5a01547456eb2dc3b62555b8d9",
+    },
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const structuredData = getStructuredData();
+
+  return (
+    <html lang="ko">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          rel="stylesheet"
+          as="style"
+          crossOrigin="anonymous"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
+      </head>
+      <body className="font-sans pb-safe-floating lg:pb-0">{children}</body>
+    </html>
+  );
+}
