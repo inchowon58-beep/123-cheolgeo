@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   category: "반려동물",
   verification: {
     other: {
-      "naver-site-verification": "5157c07b2ad7cc5a01547456eb2dc3b62555b8d9",
+      "naver-site-verification": "fe54c6ef82a05c49408357991b91f3e2065ff4ce",
     },
   },
 };
@@ -73,6 +73,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        <meta name="naver-site-verification" content="fe54c6ef82a05c49408357991b91f3e2065ff4ce" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
